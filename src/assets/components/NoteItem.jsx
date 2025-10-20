@@ -1,4 +1,4 @@
-export default function NoteItem({ title, note, onDelete, onEdit }) {
+export default function NoteItem({ id, title, note, onDelete, onEdit }) {
     return (
         <div style={{
             border: '2px solid olive',
@@ -29,7 +29,7 @@ export default function NoteItem({ title, note, onDelete, onEdit }) {
                 Edit
             </button>
             <button
-                onClick={onDelete}
+                onClick={() => onDelete(id)}
                 style={{
                     position: 'absolute',
                     top: '10px',
