@@ -27,10 +27,26 @@ function App() {
     setIsEditing(true);
     setShowNew(true);
   }
+
   const onCloseEdit = () => {
     setShowNew(false);
     setIsEditing(false);
     setEditingID(null);
+  }
+
+  const getNoteById = (id) => {
+    let note = notes.find((note) => note.id === id);
+    return { title: note.title, content: note.content };
+  }
+
+  const onEdit = (id, newTitle, newContent) => {
+    setNotes((notes) =>
+      notes.map((note) =>
+        // si el id es el mismo, copia la nota y cambiale esto
+        note.id === id ? { id, title: newTitle, content: newContent } : note
+      )
+    );
+    onCloseEdit();
   }
 
   const [showNew, setShowNew] = useState(false)
@@ -47,7 +63,7 @@ function App() {
     <>
       <NoteContainer notes={notes} onDelete={deleteNote} onEdit={editNote}></NoteContainer>
       <AddButton onClick={() => { setShowNew(true) }}></AddButton>
-      {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit}></NoteEditScreen>}
+      {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onEdit={onEdit} getNoteByID={getNoteById}></NoteEditScreen>}
 
 
     </>

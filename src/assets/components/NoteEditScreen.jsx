@@ -1,7 +1,15 @@
-import { useState } from "react";
-export default function NoteEditScreen({ onAddNote, isEditing, editingID, onCloseEdit }) {
+import { useState, useEffect } from "react";
+export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID, onCloseEdit, getNoteByID }) {
     const [newTitle, setNewTitle] = useState('');
     const [newContent, setNewContent] = useState('');
+
+    useEffect(() => {
+        if (isEditing) {
+            const note = getNoteByID(editingID);
+            setNewTitle(note.title);
+            setNewContent(note.content);
+        }
+    }, []);
 
     return (
         <div style={{
@@ -63,7 +71,8 @@ export default function NoteEditScreen({ onAddNote, isEditing, editingID, onClos
                         marginTop: '10px',
                         boxSizing: 'border-box'
                     }}></textarea>
-                <button type="submit" onClick={() => { onAddNote(newContent, newTitle) }}>Submit</button>
+                {/*Submit button*/}
+                <button onClick={() => { (isEditing) ? onEdit(editingID, newTitle, newContent) : onAddNote(newTitle, newContent) }}>Submit</button>
 
             </div>
         </div>
