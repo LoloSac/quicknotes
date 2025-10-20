@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default function NoteItem({ setShowNew, onAddNote }) {
+export default function NoteEditScreen({ onAddNote, isEditing, editingID, onCloseEdit }) {
     const [newTitle, setNewTitle] = useState('');
     const [newContent, setNewContent] = useState('');
 
@@ -27,6 +27,7 @@ export default function NoteItem({ setShowNew, onAddNote }) {
                 color: 'black',
                 position: 'relative'
             }}>
+                {/* Close button */}
                 <button
                     style={{
                         position: 'absolute',
@@ -41,10 +42,11 @@ export default function NoteItem({ setShowNew, onAddNote }) {
                         color: '#666',
                         padding: 0
                     }}
-                    onClick={() => { setShowNew(false) }}
+                    onClick={onCloseEdit}
                 >
                     ×
                 </button>
+                {/*Title and text inputs*/}
                 <input placeholder="Title"
                     onChange={(e) => setNewTitle(e.target.value)}
                     value={newTitle}

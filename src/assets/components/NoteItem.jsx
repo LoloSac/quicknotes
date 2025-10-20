@@ -12,7 +12,7 @@ export default function NoteItem({ id, title, note, onDelete, onEdit }) {
             minHeight: '150px'
         }}>
             <button
-                onClick={onEdit}
+                onClick={() => onEdit(id)}
                 style={{
                     position: 'absolute',
                     top: '10px',
