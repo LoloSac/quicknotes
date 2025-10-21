@@ -6,10 +6,12 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
     useEffect(() => {
         if (isEditing) {
             const note = getNoteByID(editingID);
-            setNewTitle(note.title);
-            setNewContent(note.content);
+            if(note){
+                setNewTitle(note.title);
+                setNewContent(note.content);
+            }
         }
-    }, []);
+    }, [editingID, isEditing, getNoteByID]);
 
     return (
         <div style={{

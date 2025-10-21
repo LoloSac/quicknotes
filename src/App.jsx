@@ -1,13 +1,33 @@
-import { useState } from 'react'
-import NoteItem from './assets/components/NoteItem.jsx'
+import { useEffect, useState } from 'react'
 import NoteContainer from './assets/components/NoteContainer.jsx'
 import AddButton from './assets/components/AddButton.jsx'
-import EditScreen from './assets/components/EditScreen.jsx'
 // borrar despues
-import NewNote from './assets/components/NoteEditScreen.jsx'
 import NoteEditScreen from './assets/components/NoteEditScreen.jsx'
 
 function App() {
+  // VARIABLES
+  const [showNew, setShowNew] = useState(false)
+  
+  const [notes, setNotes] = useState(() => {
+    let savedNotes = null;
+    if (localStorage.getItem('notes')) {
+      savedNotes = JSON.parse(localStorage.getItem('notes'));
+    }
+    if (savedNotes != null && savedNotes.length > 0) {
+      return savedNotes;
+    }
+    return [
+      { id: 1, title: 'Sample Note', content: 'This is a sample note.' }
+    ]
+  })
+  
+  
+  
+  const [isEditing, setIsEditing] = useState(false);
+  
+  const [editingID, setEditingID] = useState(null);
+  // funciones
+
   const addNote = (title, content) => {
     const newNote = {
       id: Date.now(),
@@ -34,7 +54,7 @@ function App() {
     setEditingID(null);
   }
 
-  const getNoteById = (id) => {
+  const getNoteByID = (id) => {
     let note = notes.find((note) => note.id === id);
     return { title: note.title, content: note.content };
   }
@@ -48,22 +68,23 @@ function App() {
     );
     onCloseEdit();
   }
-
-  const [showNew, setShowNew] = useState(false)
-
-  const [notes, setNotes] = useState([
-    { id: 1, title: 'Sample Note', content: 'This is a sample note.' },
-    { id: 2, title: 'Sample 2', content: 'Xd' }
-  ])
-  const [isEditing, setIsEditing] = useState(false);
-
-  const [editingID, setEditingID] = useState(null);
-
+  const saveNotes = (notes) =>{
+    // Guardar las notas en el almacenamiento local
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }
+  // useEffects
+  
+  
+  
+  useEffect(() => {
+    saveNotes(notes);
+  }, [notes]);
+  
   return (
     <>
       <NoteContainer notes={notes} onDelete={deleteNote} onEdit={editNote}></NoteContainer>
       <AddButton onClick={() => { setShowNew(true) }}></AddButton>
-      {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onEdit={onEdit} getNoteByID={getNoteById}></NoteEditScreen>}
+      {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onEdit={onEdit} getNoteByID={getNoteByID}></NoteEditScreen>}
 
 
     </>
