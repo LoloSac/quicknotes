@@ -82,9 +82,9 @@ function App() {
   
   return (
     <>
-      <NoteContainer notes={notes} onDelete={deleteNote} onEdit={editNote}></NoteContainer>
+      <NoteContainer notes={notes} onEdit={editNote}></NoteContainer>
       <AddButton onClick={() => { setShowNew(true) }}></AddButton>
-      {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onEdit={onEdit} getNoteByID={getNoteByID}></NoteEditScreen>}
+      {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onDelete={deleteNote} onEdit={onEdit} getNoteByID={getNoteByID}></NoteEditScreen>}
 
 
     </>

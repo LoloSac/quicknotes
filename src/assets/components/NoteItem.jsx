@@ -1,26 +1,19 @@
-export default function NoteItem({ id, title, note, onDelete, onEdit }) {
+export default function NoteItem({ id, title, note, onEdit }) {
     return (
-        <div className="bg-surface min-h-30 rounded-xl relative p-5 m-8 shadow-md/10 w-70 sm:w-100 md:w-180">
-            {/*Edit button*/}
-            <button
-                onClick={() => onEdit(id)}
-                className="absolute top-2 right-20 bg-primary hover:bg-primary-hover text-white rounded px-3 py-1 text-sm cursor-pointer"
-            >
-                Edit
-            </button>
-            {/*Delete button*/}
-            <button
-                onClick={() => onDelete(id)}
-                className="absolute top-2 right-2 bg-accent hover:bg-red-600 text-white rounded px-3 py-1 text-sm cursor-pointer"
-            >
-                Delete
-            </button>
+        <div className="bg-surface min-h-30 rounded-xl relative p-5 pb-0 m-5 shadow-md/10 w-70 sm:w-100 md:w-180 flex flex-col">
             <div className='text-text h-10 font-bold'>
                 {title}
             </div>
             <div className='text-gray-800 leading-relaxed break-words'>
                 {note}
             </div>
+            {/*Edit button*/}
+            <button
+                onClick={() => onEdit(id)}
+                className="bg-primary hover:bg-primary-hover text-white rounded px-3 py-1 text-sm cursor-pointer justify-self-end self-end my-5 w-15 h-8"
+            >
+                Edit
+            </button>
         </div>
     )
 }

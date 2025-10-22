@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID, onCloseEdit, getNoteByID }) {
+import DeleteButton from "./DeleteButton";
+export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID, onCloseEdit, getNoteByID, onDelete}) {
     const [newTitle, setNewTitle] = useState('');
     const [newContent, setNewContent] = useState('');
 
@@ -14,68 +15,23 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
     }, [editingID, isEditing, getNoteByID]);
 
     return (
-        <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 1000
-        }}>
-            <div style={{
-                backgroundColor: 'white',
-                padding: '20px',
-                borderRadius: '8px',
-                width: '80%',
-                maxWidth: '600px',
-                maxHeight: '80%',
-                overflow: 'auto',
-                color: 'black',
-                position: 'relative'
-            }}>
-                {/* Close button */}
-                <button
-                    style={{
-                        position: 'absolute',
-                        top: '0px',
-                        right: '5px',
-                        paddingTop: '0px',
-                        marginTop: '0px',
-                        background: 'none',
-                        border: 'none',
-                        fontSize: '20px',
-                        cursor: 'pointer',
-                        color: '#666',
-                        padding: 0
-                    }}
-                    onClick={onCloseEdit}
-                >
-                    ×
-                </button>
+        <div className= "fixed w-full h-full bg-black/50 flex justify-center items-center top-0 b-0" onClick={onCloseEdit}>
+            {/*mainWindow*/}
+            <div className="w-xl bg-surface p-8 flex flex-col gap-4 pt-8 relative rounded" onClick={(e) => e.stopPropagation()}>
                 {/*Title and text inputs*/}
-                <input placeholder="Title"
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    value={newTitle}
-                    style={{
-                        width: '100%',
-                        boxSizing: 'border-box'
-                    }} />
-                <textarea placeholder="Your note here..."
-                    onChange={(e) => setNewContent(e.target.value)}
-                    value={newContent}
-                    style={{
-                        width: '100%',
-                        height: '200px',
-                        marginTop: '10px',
-                        boxSizing: 'border-box'
-                    }}></textarea>
-                {/*Submit button*/}
-                <button onClick={() => { (isEditing) ? onEdit(editingID, newTitle, newContent) : onAddNote(newTitle, newContent) }}>Submit</button>
-
+                <input placeholder="Title" onChange={(e) => setNewTitle(e.target.value)} value={newTitle} className = "rounded shadow-inner shadow-black/10 bg-surface-shadow p-2"/>
+                <textarea placeholder="Your note here..." onChange={(e) => setNewContent(e.target.value)} value={newContent} className= "h-50 rounded shadow-inner shadow-black/10 bg-surface-shadow p-2"></textarea>
+                {/*BUTTONS*/}
+                <div className="*:rounded *:h-10 *:w-20 flex flex-row gap-2 justify-end">
+                    {/* Close button */}
+                    <button onClick={onCloseEdit} className="bg-neutral-300 text-black">Cancel</button>
+                    {/* Delete button */}
+                    {isEditing && <DeleteButton onClick={() => { onDelete(editingID); onCloseEdit(); }}>Delete</DeleteButton>}
+                    {/*Submit button*/}
+                    <button onClick={() => { (isEditing) ? onEdit(editingID, newTitle, newContent) : onAddNote(newTitle, newContent)}} className="bg-primary text-surface">
+                        Submit
+                    </button>
+                </div>
             </div>
         </div>
     )
