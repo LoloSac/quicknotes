@@ -26,7 +26,7 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
                     {/* Close button */}
                     <button onClick={onCloseEdit} className="bg-neutral-300 text-black">Cancel</button>
                     {/* Delete button */}
-                    {isEditing && <DeleteButton onClick={() => { onDelete(editingID); onCloseEdit(); }}>Delete</DeleteButton>}
+                    {isEditing && <DeleteButton onDelete={(id) => { onDelete(id); onCloseEdit(); }} id={editingID}>Delete</DeleteButton>}
                     {/*Submit button*/}
                     <button onClick={() => { (isEditing) ? onEdit(editingID, newTitle, newContent) : onAddNote(newTitle, newContent)}} className="bg-primary text-surface">
                         Submit
