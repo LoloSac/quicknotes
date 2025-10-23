@@ -1,9 +1,11 @@
 export default function NoteItem({ id, title, note, onEdit }) {
     return (
         <div className="bg-surface min-h-30 rounded-xl relative p-5 pb-0 m-5 shadow-md/10 w-70 sm:w-100 md:w-180 flex flex-col">
+            {/*Title*/}
             <div className='text-text h-10 font-bold'>
                 {title}
             </div>
+            {/*Body*/}
             <div className='text-gray-800 leading-relaxed break-words'>
                 {note}
             </div>

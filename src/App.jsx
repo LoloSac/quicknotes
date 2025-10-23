@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import NoteContainer from './assets/components/NoteContainer.jsx'
 import AddButton from './assets/components/AddButton.jsx'
-// borrar despues
 import NoteEditScreen from './assets/components/NoteEditScreen.jsx'
+import EmptySign from './assets/components/EmptySign.jsx'
 
 function App() {
   // VARIABLES
@@ -26,6 +26,8 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   
   const [editingID, setEditingID] = useState(null);
+
+  const [isEmpty, setIsEmpty] = useState(false);
   // funciones
 
   const addNote = (title, content) => {
@@ -36,6 +38,7 @@ function App() {
     }
     setNotes([...notes, newNote]);
     setShowNew(false);
+    setIsEmpty(false);
   }
 
   const deleteNote = (id) => {
@@ -78,13 +81,21 @@ function App() {
   
   useEffect(() => {
     saveNotes(notes);
+    if(notes.length === 0){
+      setIsEmpty(true);
+    }
   }, [notes]);
   
   return (
     <>
-      <NoteContainer notes={notes} onEdit={editNote}></NoteContainer>
+      
       <AddButton onClick={() => { setShowNew(true) }}></AddButton>
-      {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onDelete={deleteNote} onEdit={onEdit} getNoteByID={getNoteByID}></NoteEditScreen>}
+      <div className={`flex flex-col min-h-screen ${isEmpty ? 'justify-center':null}`}>
+        {!isEmpty && <NoteContainer notes={notes} onEdit={editNote}></NoteContainer>}
+        {isEmpty && <EmptySign></EmptySign>}
+
+        {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onDelete={deleteNote} onEdit={onEdit} getNoteByID={getNoteByID}></NoteEditScreen>}
+      </div>
 
 
     </>
