@@ -89,11 +89,11 @@ function App() {
   return (
     <>
       
-      <AddButton onClick={() => { setShowNew(true) }}></AddButton>
       <div className={`flex flex-col min-h-screen ${isEmpty ? 'justify-center':null}`}>
-        {!isEmpty && <NoteContainer notes={notes} onEdit={editNote}></NoteContainer>}
-        {isEmpty && <EmptySign></EmptySign>}
-
+        {/*Note container / Empty Sign*/}
+        {!isEmpty ? <NoteContainer notes={notes} onEdit={editNote}></NoteContainer>:<EmptySign></EmptySign>}
+        {/*Add Button*/}
+        <AddButton onClick={() => { setShowNew(true) }}></AddButton>
         {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onDelete={deleteNote} onEdit={onEdit} getNoteByID={getNoteByID}></NoteEditScreen>}
       </div>
 
