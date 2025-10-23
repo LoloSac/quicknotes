@@ -15,9 +15,9 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
     }, [editingID, isEditing, getNoteByID]);
 
     return (
-        <div className= "fixed w-full h-full bg-black/50 flex justify-center items-center top-0 b-0" onClick={onCloseEdit}>
+        <div className= "fixed w-full h-full bg-black/50 flex justify-center items-center top-0 b-0" onMouseDown={onCloseEdit}>
             {/*mainWindow*/}
-            <div className="w-xl bg-surface p-8 flex flex-col gap-4 pt-8 relative rounded" onClick={(e) => e.stopPropagation()}>
+            <div className="w-xl bg-surface p-8 flex flex-col gap-4 pt-8 relative rounded" onMouseDown={(e) => e.stopPropagation()}>
                 {/*Title and text inputs*/}
                 <input placeholder="Title" onChange={(e) => setNewTitle(e.target.value)} value={newTitle} className = "rounded shadow-inner shadow-black/10 bg-surface-shadow p-2"/>
                 <textarea placeholder="Your note here..." onChange={(e) => setNewContent(e.target.value)} value={newContent} className= "h-50 rounded shadow-inner shadow-black/10 bg-surface-shadow p-2"></textarea>
