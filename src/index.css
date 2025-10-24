@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-bg: #DCE2F2;
   --color-surface: #F2F2F2;
@@ -9,6 +11,14 @@
   --color-secondary: #808bf2;
   --color-accent: #e36419;
   --color-primary-hover: #1c328c;
+  --color-dark-bg: #1e2124;
+  --color-dark-surface: #282b30;
+  --color-dark-surface-shadow: #424549;
+  --color-dark-secondary: #ffc0cb;
+  --color-dark-text: #E0E0E0;
+
+
+;
 }
 
 :root {
@@ -23,6 +33,4 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: var(--color-bg);
-  color: var(--color-text);
 }

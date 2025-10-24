@@ -3,6 +3,7 @@ import NoteContainer from './assets/components/NoteContainer.jsx'
 import AddButton from './assets/components/AddButton.jsx'
 import NoteEditScreen from './assets/components/NoteEditScreen.jsx'
 import EmptySign from './assets/components/EmptySign.jsx'
+import DarkModeButton from './assets/components/DarkModeButton.jsx'
 
 function App() {
   // VARIABLES
@@ -28,6 +29,8 @@ function App() {
   const [editingID, setEditingID] = useState(null);
 
   const [isEmpty, setIsEmpty] = useState(false);
+  
+  const[isDark, setIsDark] = useState(false);
   // funciones
 
   const addNote = (title, content) => {
@@ -39,6 +42,9 @@ function App() {
     setNotes([...notes, newNote]);
     setShowNew(false);
     setIsEmpty(false);
+  }
+  const changeTheme = () =>{
+    setIsDark(!isDark);
   }
 
   const deleteNote = (id) => {
@@ -87,18 +93,19 @@ function App() {
   }, [notes]);
   
   return (
-    <>
+    <div className={(isDark)?"dark":null}>
       
-      <div className={`flex flex-col min-h-screen ${isEmpty ? 'justify-center':null}`}>
+      <div className={`flex flex-col w-screen min-h-screen ${isEmpty ? 'justify-center':null} bg-bg dark:bg-dark-bg text-text dark:text-dark-text`}>
         {/*Note container / Empty Sign*/}
         {!isEmpty ? <NoteContainer notes={notes} onEdit={editNote}></NoteContainer>:<EmptySign></EmptySign>}
         {/*Add Button*/}
         <AddButton onClick={() => { setShowNew(true) }}></AddButton>
+        <DarkModeButton onClick={changeTheme} isDark={isDark}></DarkModeButton>
         {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onDelete={deleteNote} onEdit={onEdit} getNoteByID={getNoteByID}></NoteEditScreen>}
       </div>
 
 
-    </>
+    </div>
   )
 }
 
