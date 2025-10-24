@@ -29,8 +29,10 @@ function App() {
   const [editingID, setEditingID] = useState(null);
 
   const [isEmpty, setIsEmpty] = useState(false);
-  
-  const[isDark, setIsDark] = useState(false);
+
+  const [isDark, setIsDark] = useState(() => {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
   // funciones
 
   const addNote = (title, content) => {
