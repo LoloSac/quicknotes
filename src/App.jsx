@@ -97,7 +97,7 @@ function App() {
   return (
     <div className={(isDark)?"dark":null}>
       
-      <div className={`flex flex-col w-screen min-h-screen ${isEmpty ? 'justify-center':null} bg-bg dark:bg-dark-bg text-text dark:text-dark-text`}>
+      <div className={`flex flex-col min-h-screen ${isEmpty ? 'justify-center':null} bg-bg dark:bg-dark-bg text-text dark:text-dark-text`}>
         {/*Note container / Empty Sign*/}
         {!isEmpty ? <NoteContainer notes={notes} onEdit={editNote}></NoteContainer>:<EmptySign></EmptySign>}
         {/*Add Button*/}
