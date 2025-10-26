@@ -106,7 +106,7 @@ function App() {
         {/*Note container / Empty Sign*/}
         {!isEmpty ? <NoteContainer notes={notes} onEdit={editNote}></NoteContainer>:<EmptyState isDark={isDark} onClick={() => { setShowNew(true) }}></EmptyState>}
         {/*Add Button*/}
-        <AddButton onClick={() => { setShowNew(true) }}></AddButton>
+        {!isEmpty?<AddButton onClick={() => { setShowNew(true) }}></AddButton>:null}
         <DarkModeButton onClick={changeTheme} isDark={isDark}></DarkModeButton>
         {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onDelete={deleteNote} onEdit={onEdit} getNoteByID={getNoteByID}></NoteEditScreen>}
       </div>
