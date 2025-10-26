@@ -8,7 +8,7 @@ export default function EmptyState({isDark, onClick}) {
             ">
                 You have no notes!
             </p>
-            <p className="mb-8">When you are ready, press the button below to create your first note.</p>
+            <p className="mb-8 text-center">When you are ready, press the button below to create your first note.</p>
             <button onClick={onClick} className="
                 bg-primary hover:bg-primary-hover hover:cursor-pointer
                 text-white text-base
