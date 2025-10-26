@@ -36,7 +36,7 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
             <form onSubmit={handleSubmit} 
                 onMouseDown={(e) => e.stopPropagation()}
                 onKeyDown={(e) => {if(e.key === "Escape") onCloseEdit()}}
-                className=" md:w-xl sm:w-md w-sm bg-surface dark:bg-dark-surface p-8 flex flex-col gap-6 pb-6 relative rounded justify-evenly *:focus:outline-none *:focus:ring-2 *:focus:ring-primary dark:*:focus:ring-secondary dark:*:caret-white" 
+                className=" md:w-xl sm:w-md w-sm bg-surface dark:bg-dark-surface p-8 flex flex-col gap-6 pb-6 relative rounded justify-evenly *:focus:outline-none *:focus:ring-2 dark:*:caret-white" 
                 >
                 {/*Title and text inputs*/}
                 <input 
@@ -44,7 +44,7 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
                     placeholder="Title" 
                     onChange={(e) => {setNewTitle(e.target.value); setTitleError(false);}} 
                     value={newTitle} 
-                    className = {`rounded shadow-inner shadow-black/10 bg-surface-shadow dark:bg-dark-surface-shadow p-2 text-text dark:text-dark-text font-bold ${titleError ? 'ring-2 ring-red-500 placeholder:text-red-400'  : 'placeholder:text-zinc-400'}`}/>
+                    className = {`rounded shadow-inner shadow-black/10 bg-surface-shadow dark:bg-dark-surface-shadow p-2 text-text dark:text-dark-text font-bold ${titleError ? 'ring-2 ring-red-500 placeholder:text-red-400 focus:ring-red-400' : 'placeholder:text-zinc-400 focus:ring-primary dark:focus:ring-secondary'}`}/>
                 <textarea 
                     placeholder="Your note here..." 
                     onChange={(e) => setNewContent(e.target.value)} 
@@ -55,7 +55,7 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
                             handleSubmit(e);
                         }
                     }}
-                    className= "h-50 rounded shadow-inner shadow-black/10 bg-surface-shadow dark:bg-dark-surface-shadow p-2 font-medium placeholder:text-zinc-400"></textarea>
+                    className= "h-50 rounded shadow-inner shadow-black/10 bg-surface-shadow dark:bg-dark-surface-shadow p-2 font-medium placeholder:text-zinc-400 min-h-10 dark:focus:ring-secondary focus:ring-primary"></textarea>
                 {/*BUTTONS*/}
                 <div className="*:rounded *:h-10 *:w-20 *:text-base *:font-medium *:hover:cursor-pointer flex flex-row gap-2 sm:justify-end justify-around">
                     {/* Delete button */}
