@@ -14,7 +14,7 @@ function App() {
     if (localStorage.getItem('notes')) {
       savedNotes = JSON.parse(localStorage.getItem('notes'));
     }
-    if (savedNotes != null && savedNotes.length > 0) {
+    if (savedNotes != null) {
       return savedNotes;
     }
     return [

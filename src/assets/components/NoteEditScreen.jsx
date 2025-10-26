@@ -3,6 +3,7 @@ import DeleteButton from "./DeleteButton";
 export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID, onCloseEdit, getNoteByID, onDelete}) {
     const [newTitle, setNewTitle] = useState('');
     const [newContent, setNewContent] = useState('');
+    const [titleError, setTitleError] = useState(false);
 
     useEffect(() => {
         if (isEditing) {
@@ -16,6 +17,12 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        //
+        if(newTitle.trim() === ""){
+            setTitleError(true);
+            return;
+        }
         if(isEditing){
             onEdit(editingID, newTitle, newContent);
         }else{
@@ -35,9 +42,9 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
                 <input 
                     autoFocus
                     placeholder="Title" 
-                    onChange={(e) => setNewTitle(e.target.value)} 
+                    onChange={(e) => {setNewTitle(e.target.value); setTitleError(false);}} 
                     value={newTitle} 
-                    className = "rounded shadow-inner shadow-black/10 bg-surface-shadow dark:bg-dark-surface-shadow p-2 text-text dark:text-dark-text font-bold placeholder:text-zinc-400"/>
+                    className = {`rounded shadow-inner shadow-black/10 bg-surface-shadow dark:bg-dark-surface-shadow p-2 text-text dark:text-dark-text font-bold ${titleError ? 'ring-2 ring-red-500 placeholder:text-red-400'  : 'placeholder:text-zinc-400'}`}/>
                 <textarea 
                     placeholder="Your note here..." 
                     onChange={(e) => setNewContent(e.target.value)} 
