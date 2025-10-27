@@ -32,7 +32,6 @@ function App() {
 
   const [isDark, setIsDark] = useState(() => {
     if(localStorage.getItem('theme')){
-      console.log("Existe");
       return JSON.parse(localStorage.getItem('theme'));
     } else
       return window.matchMedia('(prefers-color-scheme: dark)').matches;
