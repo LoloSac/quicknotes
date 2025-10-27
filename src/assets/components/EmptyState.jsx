@@ -1,14 +1,14 @@
 export default function EmptyState({isDark, onClick}) {
     return(
         <div className="flex flex-col items-center">
-            <img src={`src/assets/icons/${isDark ? 'empty' : 'notes'}.png`} alt="empty ghost img"  className="w-70 mb-5"/>
+            <img src={`/quicknotes/img/${isDark ? 'empty' : 'notes'}.png`} alt="empty ghost img"  className="w-70 mb-5"/>
             <p className="
                 text-text font-bold text-lg dark:text-dark-text
                 mb-2
             ">
                 You have no notes!
             </p>
-            <p className="mb-8 text-center">When you are ready, press the button below to create your first note.</p>
+            <p className="mb-8 mx-10 max-w-100 text-center">When you are ready, press the button below to create your first note.</p>
             <button onClick={onClick} className="
                 bg-primary hover:bg-primary-hover hover:cursor-pointer
                 text-white text-base
