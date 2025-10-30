@@ -64,7 +64,8 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
                         onClick={() => { onDelete(editingID); onCloseEdit(); }} 
                         content= 'Delete' 
                         className="
-                            sm:mr-auto bg-accent text-white w-20 h-10 font-medium text-base
+                            sm:mr-auto text-white w-20 h-10 font-medium text-base
+                            bg-accent sm:hover:bg-accent-hover
 
                     "></GenericButton>}
                     {/* Close button */}
@@ -72,14 +73,17 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
                         onClick={onCloseEdit} 
                         content='Cancel' 
                         className="
-                            bg-neutral-300 dark:bg-stone-700 text-black dark:text-neutral-300 w-20 h-10 font-medium text-base
+                            text-black dark:text-neutral-300 w-20 h-10 font-medium text-base
+                            bg-neutral-300 sm:hover:bg-neutral-400
+                            dark:bg-neutral-700 sm:dark:hover:bg-neutral-700/50
                     "></GenericButton>
                     {/*Submit button*/}
                     <GenericButton 
                         type="submit" 
                         content='Submit' 
                         className="
-                            bg-primary text-surface w-20 h-10 font-medium text-base
+                            text-surface w-20 h-10 font-medium text-base
+                            bg-primary sm:hover:bg-primary-hover
                         "
                     ></GenericButton>
                 </div>

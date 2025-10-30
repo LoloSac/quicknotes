@@ -1,13 +1,14 @@
-export default function GenericButton({ onClick, content, className, hover = true, type = "button"}) {
+export default function GenericButton({ onClick, content, className, type = "button"}) {
     return (
         <button 
                 type={type}
                 onClick={onClick}
                 className={`
+                    transition-colors
+                    duration-100
                     rounded
                     px-3 py-1 
                     cursor-pointer 
-                    ${hover? 'md:hover:brightness-80':''}
                     ${className}
                 `}
             >

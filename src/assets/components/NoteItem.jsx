@@ -8,13 +8,13 @@ export default function NoteItem({ id, title, note, onEdit }) {
                 {title}
             </div>
             {/*Body*/}
-            <div className='text-gray-800 dark:text-gray-200 leading-relaxed wrap-break-word'>
+            <div className='text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-wrap wrap-break-word'>
                 {note}
             </div>
             {/*Edit button*/}
             <GenericButton
                 onClick={() => onEdit(id)}
-                className="bg-primary text-white self-end my-5 w-15 h-8 text-sm"
+                className="bg-primary text-white self-end my-5 w-15 h-8 text-sm sm:hover:bg-primary-hover"
                 content="Edit"
             ></GenericButton>
         </div>

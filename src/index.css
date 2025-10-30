@@ -4,18 +4,24 @@
 
 @theme {
   --color-bg: #DCE2F2;
+  --color-dark-bg: #1e2124;
+
   --color-surface: #F2F2F2;
   --color-surface-shadow: #e4eaf5;
-  --color-text: #152158;
-  --color-primary: #3051d9;
-  --color-secondary: #808bf2;
-  --color-accent: #e36419;
-  --color-primary-hover: #1c328c;
-  --color-dark-bg: #1e2124;
   --color-dark-surface: #282b30;
   --color-dark-surface-shadow: #424549;
-  --color-dark-secondary: #ffc0cb;
+
+  --color-text: #152158;
   --color-dark-text: #E0E0E0;
+
+  --color-primary: #3051d9;
+  --color-primary-hover: #1c328c;
+
+  --color-secondary: #808bf2;
+  --color-dark-secondary: #ffc0cb;
+
+  --color-accent: #e36419;
+  --color-accent-hover: #8f3703;
 }
 
 
