@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import NoteContainer from './assets/components/NoteContainer.jsx'
-import AddButton from './assets/components/AddButton.jsx'
+import FixedButton from './assets/components/FixedButton.jsx'
 import NoteEditScreen from './assets/components/NoteEditScreen.jsx'
 import EmptyState from './assets/components/EmptyState.jsx'
-import DarkModeButton from './assets/components/DarkModeButton.jsx'
+
+import plusSignIcon from './assets/icons/plus-sign.svg'
+import sunIcon from './assets/icons/sun.svg'
+import moonIcon from './assets/icons/moon.svg'
 
 function App() {
   // VARIABLES
@@ -97,7 +100,18 @@ function App() {
       setIsEmpty(true);
     }
   }, [notes]);
-  
+
+  //////////////////////////////////////////////////////////////// ICONS ////////////////////////////////////////////////
+  const plusIcon = (
+    <img src={plusSignIcon} className='w-8 h-8 brightness-0 invert'></img>
+  )
+  const darkIcon =(
+    <img src={isDark ? sunIcon : moonIcon} className="w-8 h-8 brightness-0 invert" />
+  )
+
+
+  //////////////////////////////////////////////////////////////// MAIN /////////////////////////////////////////////////
+
   return (
     <div className={(isDark)?"dark":null}>
       
@@ -105,8 +119,8 @@ function App() {
         {/*Note container / Empty Sign*/}
         {!isEmpty ? <NoteContainer notes={notes} onEdit={editNote}></NoteContainer>:<EmptyState isDark={isDark} onClick={() => { setShowNew(true) }}></EmptyState>}
         {/*Add Button*/}
-        {!isEmpty?<AddButton onClick={() => { setShowNew(true) }}></AddButton>:null}
-        <DarkModeButton onClick={changeTheme} isDark={isDark}></DarkModeButton>
+        {!isEmpty?<FixedButton onClick={() => { setShowNew(true) }} content={plusIcon} className="fixed bottom-6 right-6"></FixedButton>:null}
+        <FixedButton onClick={changeTheme} content={darkIcon} className={'bottom-6 left-6'}></FixedButton>
         {showNew && <NoteEditScreen onAddNote={addNote} isEditing={isEditing} editingID={editingID} onCloseEdit={onCloseEdit} onDelete={deleteNote} onEdit={onEdit} getNoteByID={getNoteByID}></NoteEditScreen>}
       </div>
 

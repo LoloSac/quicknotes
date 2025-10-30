@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import DeleteButton from "./DeleteButton";
+import GenericButton from "./GenericButton.jsx";
 export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID, onCloseEdit, getNoteByID, onDelete}) {
     const [newTitle, setNewTitle] = useState('');
     const [newContent, setNewContent] = useState('');
@@ -57,15 +57,31 @@ export default function NoteEditScreen({ onAddNote, isEditing, onEdit, editingID
                     }}
                     className= "md:h-50 sm:h-60 h-70 rounded shadow-inner shadow-black/10 bg-surface-shadow dark:bg-dark-surface-shadow p-2 font-medium placeholder:text-zinc-400 min-h-10 dark:focus:ring-secondary focus:ring-primary"></textarea>
                 {/*BUTTONS*/}
-                <div className="*:rounded *:h-10 *:w-20 *:text-base *:font-medium *:hover:cursor-pointer flex flex-row gap-2 sm:justify-end justify-around">
+                <div className="flex flex-row gap-2 sm:justify-end justify-around">
                     {/* Delete button */}
-                    {isEditing && <DeleteButton onDelete={(id) => { onDelete(id); onCloseEdit(); }} id={editingID} className="sm:mr-auto">Delete</DeleteButton>}
+                    {isEditing && 
+                    <GenericButton 
+                        onClick={() => { onDelete(editingID); onCloseEdit(); }} 
+                        content= 'Delete' 
+                        className="
+                            sm:mr-auto bg-accent text-white w-20 h-10 font-medium text-base
+
+                    "></GenericButton>}
                     {/* Close button */}
-                    <button type="button" onClick={onCloseEdit} className="bg-neutral-300 dark:bg-stone-700 text-black dark:text-neutral-300">Cancel</button>
+                    <GenericButton 
+                        onClick={onCloseEdit} 
+                        content='Cancel' 
+                        className="
+                            bg-neutral-300 dark:bg-stone-700 text-black dark:text-neutral-300 w-20 h-10 font-medium text-base
+                    "></GenericButton>
                     {/*Submit button*/}
-                    <button type="submit" className="bg-primary text-surface">
-                        Submit
-                    </button>
+                    <GenericButton 
+                        type="submit" 
+                        content='Submit' 
+                        className="
+                            bg-primary text-surface w-20 h-10 font-medium text-base
+                        "
+                    ></GenericButton>
                 </div>
             </form>
         </div>
