@@ -1,3 +1,4 @@
+import GenericButton from './GenericButton.jsx'
 export default function EmptyState({isDark, onClick}) {
     return(
         <div className="flex flex-col items-center">
@@ -9,15 +10,18 @@ export default function EmptyState({isDark, onClick}) {
                 You have no notes!
             </p>
             <p className="mb-8 mx-10 max-w-100 text-center">When you are ready, press the button below to create your first note.</p>
-            <button onClick={onClick} className="
-                bg-primary hover:bg-primary-hover hover:cursor-pointer
-                text-white text-base
-                rounded-xl w-50 h-12
-                flex items-center justify-center
-                shadow-md/30
-            "> 
+            <GenericButton 
+                onClick={onClick} 
+                content='Create your first note'
+                className="
+                    bg-primary hover:bg-primary-hover 
+                    cursor-pointer
+                    text-white text-base
+                    rounded-xl w-50 h-12
+                    shadow-md/30
+                ">
                 <span>Create your first note</span>
-            </button>
+            </GenericButton>
         </div>
     )
 }
