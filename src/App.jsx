@@ -20,9 +20,7 @@ function App() {
     if (savedNotes != null) {
       return savedNotes;
     }
-    return [
-      { id: 1, title: 'Sample Note', content: 'This is a sample note.' }
-    ]
+    return [];
   })
   
   
