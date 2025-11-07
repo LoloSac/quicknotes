@@ -7,4 +7,4 @@ This project was created as a learning exercise to practice React concepts like 
 
 - Create, edit, and delete notes
 - Notes stored in local state
-- Responsive, minimal UI with Tailwind. Supports light and dark mode with a theme switch.
+- Responsive, minimal UI with Tailwind. Supports light and dark mode with a theme switch
